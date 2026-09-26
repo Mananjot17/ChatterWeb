@@ -23,7 +23,7 @@ const UseSignup = () => {
             const data = await res.json();
 
             if (data.error) {
-                throw new Error(data.erro);
+                throw new Error(data.error);
             }
 
             localStorage.setItem("chat-user", JSON.stringify(data))
@@ -55,7 +55,7 @@ function handleInputErrors({ fullName, username, password, confirmPassword, gend
         return false;
     }
 
-    if (password.Length < 6) {
+    if (password.length < 6) {
         toast.error('Password must be at least 6 characters')
         return false;
     }
