@@ -8,8 +8,6 @@ const UseSendMessage = () => {
     const { messages, setMessages, selectedConversation } = useConversation();
     // console.log("messages : ", messages);
 
-
-
     const sendMessage = async (message) => {
         setLoading(true);
 
@@ -22,10 +20,14 @@ const UseSendMessage = () => {
                 body: JSON.stringify({ message })
             })
 
-
             const data = await res.json();
 
+            if (data.error) {
+                throw new Error(data.error);
+            }
+
             setMessages([...messages, data]);
+
         } catch (error) {
             toast.error(error.message);
         } finally {
